@@ -58,6 +58,15 @@ async function applyDdl(): Promise<void> {
     )
   `);
 
+  await db.execute(sql`
+    CREATE TABLE IF NOT EXISTS images (
+      id varchar(48) PRIMARY KEY,
+      content_type varchar(60) NOT NULL,
+      data text NOT NULL,
+      created_at timestamp NOT NULL DEFAULT now()
+    )
+  `);
+
   await db.execute(
     sql`CREATE INDEX IF NOT EXISTS menu_items_category_idx ON menu_items (category)`
   );

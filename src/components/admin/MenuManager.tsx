@@ -11,6 +11,7 @@ import {
 import { MENU_CATEGORIES, formatNairaPrice, parseTagInput, SPICE_LABELS } from "@/lib/helpers";
 import type { MenuItemData, MenuItemDraft } from "@/lib/types";
 import { IconAlert, IconCheck, IconEdit, IconPlus, IconSave, IconTrash } from "@/components/icons";
+import ImageUploadButton from "./ImageUploadButton";
 import { Button, Field, Panel, Toggle, inputClass } from "./ui";
 
 const EMPTY_DRAFT: MenuItemDraft = {
@@ -260,6 +261,7 @@ export default function MenuManager({ items, onNotify }: MenuManagerProps) {
                   className={inputClass}
                   placeholder="https://…"
                 />
+                <ImageUploadButton onUploaded={(url) => setDraft({ ...draft, imageUrl: url })} />
               </Field>
 
               <Field label="Tags" hint="comma separated, max 6">

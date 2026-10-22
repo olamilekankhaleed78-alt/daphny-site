@@ -6,6 +6,7 @@ import { saveSiteSettings } from "@/app/actions";
 import { DELIVERY_ZONES, formatNairaPrice } from "@/lib/helpers";
 import type { SiteSettings } from "@/lib/types";
 import { IconSave } from "@/components/icons";
+import ImageUploadButton from "./ImageUploadButton";
 import { Button, Field, Panel, inputClass } from "./ui";
 
 interface SettingsManagerProps {
@@ -182,6 +183,9 @@ export default function SettingsManager({ settings, onNotify }: SettingsManagerP
                       onChange={(e) => update(field.key, e.target.value)}
                       className={inputClass}
                     />
+                  )}
+                  {field.key.endsWith("_image_url") && (
+                    <ImageUploadButton onUploaded={(url) => update(field.key, url)} />
                   )}
                 </Field>
               );

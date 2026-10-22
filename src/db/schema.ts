@@ -65,3 +65,11 @@ export const orders = pgTable("orders", {
 
 export type MenuItemRow = typeof menuItems.$inferSelect;
 export type OrderRow = typeof orders.$inferSelect;
+
+/** Photos uploaded from the kitchen console (stored as base64 text). */
+export const images = pgTable("images", {
+  id: varchar("id", { length: 48 }).primaryKey(),
+  contentType: varchar("content_type", { length: 60 }).notNull(),
+  data: text("data").notNull(),
+  createdAt: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
+});
